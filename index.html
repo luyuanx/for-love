@@ -13,16 +13,17 @@
             <source src="mp3/bgm.mp3" type="audio/mpeg">
         </audio>
         <div id="image-container" style="display: none"></div>
-        <div id="playButton" style="width: 28px;height: 28px">
-            <img src="img/music.png"  alt="Play Button">
-        </div>
         <div id="mobile" :class="{ 'has-prompt': hasPrompt }">
-            <div id="mobile-head">
-                <div id="mobile-head-title">与许大钱聊天中</div>
+            <div id="mobile-head" style="display: flex; align-items: center;">
+                <div id="mobile-head-title" style="flex-grow: 1; text-align: center;">纪念我们的一周年</div>
+                <div id="playButton" style="width: 28px; height: 28px;">
+                    <img src="img/music.png" alt="Play Button" style="display: block; margin: 0 auto;">
+                </div>
             </div>
             <div id="mobile-body">
                 <div id="mobile-body-bg"></div>
                 <div id="mobile-body-content">
+
                     <div id="mock-msg-row" class="msg-row">
                         <div id="mock-msg" class="msg" v-html="latestMsgContent"></div>
                     </div>
