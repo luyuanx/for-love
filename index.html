@@ -3,32 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=100%, initial-scale=1">
-        <title>与许大钱聊天中</title>
+        <title>我们一周年啦</title>
         <link href="css/main.min.css" rel="stylesheet" type="text/css">
         <link rel="Shortcut Icon" href="favicon.ico"/>
-        <link rel="preload" href="img/yinzi.jpg" as="image">
-        <link rel="preload" href="img/lvcha.jpg" as="image">
-        <link rel="preload" href="img/huanleganwan.jpg" as="image">
-        <link rel="preload" href="img/qixi1.jpg" as="image">
-        <link rel="preload" href="img/qixi2.jpg" as="image">
-        <link rel="preload" href="img/zhonqiu1.jpg" as="image">
-        <link rel="preload" href="img/zhonqiu2.jpg" as="image">
-        <link rel="preload" href="img/zhonqiu3.jpg" as="image">
-        <link rel="preload" href="img/shengri.jpg" as="image">
-        <link rel="preload" href="img/shendan.jpg" as="image">
-        <link rel="preload" href="img/kuanian1.jpg" as="image">
-        <link rel="preload" href="img/kuanian2.jpg" as="image">
-        <link rel="preload" href="img/kuanian3.jpg" as="image">
-        <link rel="preload" href="img/dahai.jpg" as="image">
-        <link rel="preload" href="img/yuanxiao.jpg" as="image">
-        <link rel="preload" href="img/xiaojinxi1.jpg" as="image">
-        <link rel="preload" href="img/xiaojinxi2.jpg" as="image">
-        <link rel="preload" href="img/bixin.jpg" as="image">
-
-
 
     </head>
     <body>
+        <audio id="myAudio" style="display: none" controls autoplay>
+            <source src="mp3/bgm.mp3" type="audio/mpeg">
+        </audio>
+        <div id="image-container" style="display: none"></div>
+        <div id="playButton" style="width: 28px;height: 28px">
+            <img src="img/music.png"  alt="Play Button">
+        </div>
         <div id="mobile" :class="{ 'has-prompt': hasPrompt }">
             <div id="mobile-head">
                 <div id="mobile-head-title">与许大钱聊天中</div>
@@ -92,6 +79,36 @@
         <script src="//cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
         <script src="//cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
 
+        <script>
+            // 获取音频元素和播放按钮元素
+            const audio = document.getElementById('myAudio');
+            const playButton = document.getElementById('playButton');
+
+            // 为播放按钮添加点击事件监听器
+            playButton.addEventListener('click', () => {
+                audio.play().catch(error => {
+                    console.log('自动播放被阻止:', error);
+                });
+            });
+
+            // 获取img文件夹中的所有图片文件
+            const imgFolder = 'img/';
+            const imgExtensions = ['jpg']; // 支持的图像文件扩展名
+
+            // 遍历文件夹中的每个图像文件
+            const preloadImages = () => {
+                const container = document.getElementById('image-container');
+
+                imgExtensions.forEach(extension => {
+                    const image = new Image();
+                    image.src = `${imgFolder}*.${extension}`;
+                    container.appendChild(image);
+                });
+            };
+
+            // 使用预加载函数
+            preloadImages();
+        </script>
         <script src="js/index-min.js"></script>
     </body>
 </html>
