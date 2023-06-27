@@ -9,20 +9,24 @@
 
     </head>
     <body>
-        <audio id="myAudio" style="display: none" controls autoplay>
-            <source src="mp3/bgm.mp3" type="audio/mpeg">
-        </audio>
+
         <div id="image-container" style="display: none"></div>
-        <div id="playButton" style="width: 28px;height: 28px">
-            <img src="img/music.png"  alt="Play Button">
-        </div>
         <div id="mobile" :class="{ 'has-prompt': hasPrompt }">
-            <div id="mobile-head">
-                <div id="mobile-head-title">与许大钱聊天中</div>
+            <div id="mobile-head" style="display: flex; align-items: center;">
+                <div id="mobile-head-title" style="flex-grow: 1; display: flex; align-items: center; justify-content: center;">
+                    <audio id="myAudio" style="display: none" controls>
+                        <source src="mp3/bgm.mp3" type="audio/mpeg">
+                    </audio>
+                    <span style="text-align: center;">纪念我们的一周年</span>
+                    <div id="playButton" style="width: 28px; height: 28px; margin-left: 5px;">
+                        <img src="img/music.png" alt="Play Button" style="display: inline-block; vertical-align: middle;">
+                    </div>
+                </div>
             </div>
             <div id="mobile-body">
                 <div id="mobile-body-bg"></div>
                 <div id="mobile-body-content">
+
                     <div id="mock-msg-row" class="msg-row">
                         <div id="mock-msg" class="msg" v-html="latestMsgContent"></div>
                     </div>
@@ -80,17 +84,17 @@
         <script src="//cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
 
         <script>
-            // 获取音频元素和播放按钮元素
-            const audio = document.getElementById('myAudio');
-            const playButton = document.getElementById('playButton');
-
-            // 为播放按钮添加点击事件监听器
-            playButton.addEventListener('click', () => {
-                audio.play().catch(error => {
-                    console.log('自动播放被阻止:', error);
+            // 在 DOM 加载完成后运行代码
+            document.addEventListener('DOMContentLoaded', function() {
+                // 封装为点击事件
+                document.getElementById('playButton').addEventListener('click', function() {
+                    console.log("点击了");
+                    const audio = document.getElementById('myAudio');
+                    audio.play().catch(error => {
+                        console.log('自动播放被阻止:', error);
+                    });
                 });
             });
-
             // 获取img文件夹中的所有图片文件
             const imgFolder = 'img/';
             const imgExtensions = ['jpg']; // 支持的图像文件扩展名
